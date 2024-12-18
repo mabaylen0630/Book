@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}{{ view.action|default:"Add" }} Book{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center text-primary mb-4">{{ view.action|default:"Add" }} Book</h1>
+    <form method="post" enctype="multipart/form-data" class="border p-4 shadow-lg rounded-4 bg-light">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_title" class="form-label fw-bold">Title</label>
+            <input type="text" class="form-control rounded-3" id="id_title" name="title" value="{{ form.title.value|default:'' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="id_author" class="form-label fw-bold">Author</label>
+            <input type="text" class="form-control rounded-3" id="id_author" name="author" value="{{ form.author.value|default:'' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="id_description" class="form-label fw-bold">Description</label>
+            <textarea class="form-control rounded-3" id="id_description" name="description" rows="5">{{ form.description.value|default:'' }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="id_image" class="form-label fw-bold">Upload Image</label>
+            <input type="file" class="form-control rounded-3" id="id_image" name="image">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+    </form>
+</div>
+{% endblock %}
